@@ -17,6 +17,6 @@ class Complaint extends Model
 
     public function responses()
     {
-        return $this->belongsTo('App\Response');
+        return $this->hasMany('App\Response');
     }
 }
