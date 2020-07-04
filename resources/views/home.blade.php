@@ -20,6 +20,7 @@
                     {{ Auth::user()->username }}
                     {{ Auth::user()->email }}
                     {{ Auth::user()->level }}
+                    <img src="{{ route('get.photo', ['fileName' => 'eN6YTHoYIC.jpeg']) }}">
                 </div>
             </div>
         </div>
