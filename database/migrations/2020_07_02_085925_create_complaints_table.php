@@ -18,7 +18,7 @@ class CreateComplaintsTable extends Migration
             $table->integer('user_id');
             $table->longText('report');
             $table->string('photo');
-            $table->enum('status', [true, false, 'process']);
+            $table->enum('status', ['on process', 'complete']);
             $table->timestamps();
         });
     }

@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-8 mb-3">
                 @if (session('status-success'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status-success') }}
@@ -14,7 +14,7 @@
                         <form action="{{ route('complaints.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="report">Report's</label>
+                                <label for="report">Report's <small class="text-danger">*</small></label>
                                 <textarea name="report" id="report" rows="5" class="form-control @error('report') is-invalid @enderror" required>{{ old('report') }}</textarea>
                                 @error('report')
                                 <div class="invalid-feedback">
@@ -23,7 +23,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="photo">Photo</label>
+                                <label for="photo">Photo <small class="text-danger">*</small></label>
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input @error('photo') is-invalid @enderror" id="photo" name="photo" value="{{ old('photo') }}" accept="image/*" required>
                                     <label class="custom-file-label text-truncate" style="padding-right: 4.5rem;" for="photo">Choose image</label>
@@ -44,8 +44,27 @@
                             <button type="submit" class="btn btn-success">Send</button>
                             <button type="reset" class="btn btn-danger">Clear</button>
                         </form>
-                        <ul class="mb-0 mt-3 pl-3">
-                            <li class="text-danger">Report's & Photo are required.</li>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="font-weight-bold">Your last report's</p>
+                        <ul style="list-style: none;" class="pl-0">
+                            @foreach ($reports as $report)
+                                <img src="{{ route('get.photo', ['fileName' => $report->photo]) }}" class="img-fluid" alt="{{ $report->photo }}">
+                                <li>{{ $report->report }}</li>
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <small class="text-muted">{{ $report->created_at->diffForHumans() }}</small>
+                                    </div>
+                                    <div>
+                                        <span class="badge @if($report->status == 'on process') badge-dark @else badge-success @endif badge-pill text-capitalize">{{ $report->status }}</span>
+                                    </div>
+                                </div>
+                                <hr>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

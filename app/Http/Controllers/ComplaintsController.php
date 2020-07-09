@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Complaint;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class ComplaintsController extends Controller
@@ -19,7 +20,8 @@ class ComplaintsController extends Controller
      */
     public function index()
     {
-        return view('pages.complaints.index');
+        $reports = Complaint::where('user_id', Auth::user()->id)->paginate(5);
+        return view('pages.complaints.index', ['reports' => $reports]);
     }
 
     /**
@@ -51,12 +53,13 @@ class ComplaintsController extends Controller
         Complaint::create([
             'report' => $request->report,
             'photo' => $photo,
-            'user_id' => $request->user()->id
+            'user_id' => $request->user()->id,
+            'status' => 'on process'
         ]);
 
         $request->file('photo')->storeAs('photos', $photo);
 
-        return redirect()->route('complaints.create')->with('status-success', 'Your complaint sent !');
+        return redirect()->route('complaints.index')->with('status-success', 'Your complaint sent !');
     }
 
     /**
