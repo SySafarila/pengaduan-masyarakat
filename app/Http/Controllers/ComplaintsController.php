@@ -42,14 +42,12 @@ class ComplaintsController extends Controller
     {
         $request->validate([
             'report' => 'required|min:10|string',
-            'photo' => 'required|file|image|file|max:5000'
+            'photo' => 'required|image|file|max:5000'
         ], [
-            // 'report.min' => 'You have to input minimal 10 characters.'
             'photo.max' => 'Maximum size for Cover Image is 5MB.'
         ]);
 
         $photo = Str::random(10) . '.' . $request->photo->extension();
-        // return $request->user();
         Complaint::create([
             'report' => $request->report,
             'photo' => $photo,
