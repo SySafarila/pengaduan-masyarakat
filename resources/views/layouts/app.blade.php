@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/root.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -33,11 +33,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item {{ Request::is(['dashboard']) ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is(['dashboard']) ? 'text-orange' : '' }}" href="{{ route('dashboard') }}">Dashboard</a>
                         </li>
-                        <li class="nav-item {{ Request::is(['complaints', 'complaints/*']) ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('complaints.index') }}">Complaints</a>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is(['complaints', 'complaints/*']) ? 'text-orange' : '' }}" href="{{ route('complaints.index') }}">Complaints</a>
                         </li>
                     </ul>
 
@@ -55,7 +55,7 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-capitalize" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
