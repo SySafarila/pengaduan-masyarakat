@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <x-complaints.publics />
-    <x-complaints.officers />
+    @if (Auth::user()->level == 'public')
+        <x-complaints.publics />
+    @endif
+    @if (Auth::user()->level == 'officer')
+        <x-complaints.officers />
+    @endif
 @endsection
