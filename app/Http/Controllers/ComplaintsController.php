@@ -20,8 +20,7 @@ class ComplaintsController extends Controller
      */
     public function index()
     {
-        $reports = Complaint::where('user_id', Auth::user()->id)->paginate(5);
-        return view('pages.complaints.index', ['reports' => $reports]);
+        return view('pages.complaints.index');
     }
 
     /**
@@ -31,7 +30,11 @@ class ComplaintsController extends Controller
      */
     public function create()
     {
-        return view('pages.complaints.create');
+        if (Auth::user()->level == 'public') {
+            return view('pages.complaints.create');
+        } else {
+            return abort(404);
+        }
     }
 
     /**
@@ -42,24 +45,28 @@ class ComplaintsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'report' => 'required|min:10|string',
-            'photo' => 'required|image|file|max:5000'
-        ], [
-            'photo.max' => 'Maximum size for Cover Image is 5MB.'
-        ]);
+        if (Auth::user()->level == 'public') {
+            $request->validate([
+                'report' => 'required|min:10|string',
+                'photo' => 'required|image|file|max:5000'
+            ], [
+                'photo.max' => 'Maximum size for Cover Image is 5MB.'
+            ]);
 
-        $photo = Str::random(10) . '.' . $request->photo->extension();
-        Complaint::create([
-            'report' => $request->report,
-            'photo' => $photo,
-            'user_id' => $request->user()->id,
-            'status' => 'on process'
-        ]);
+            $photo = Str::random(10) . '.' . $request->photo->extension();
+            Complaint::create([
+                'report' => $request->report,
+                'photo' => $photo,
+                'user_id' => $request->user()->id,
+                'status' => 'on process'
+            ]);
 
-        $request->file('photo')->storeAs('photos', $photo);
+            $request->file('photo')->storeAs('photos', $photo);
 
-        return redirect()->route('complaints.index')->with('status-success', 'Your complaint sent !');
+            return redirect()->route('complaints.index')->with('status-success', 'Your complaint sent !');
+        } else {
+            return abort(404);
+        }
     }
 
     /**
@@ -93,7 +100,9 @@ class ComplaintsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if (Auth::user()->level == 'public') {
+            return abort(404);
+        }
     }
 
     /**
