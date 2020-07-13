@@ -7,8 +7,9 @@
                         {{ session('status-success') }}
                     </div>
                 @endif
-                <div class="card">
+                <div class="card border-0 shadow">
                     <div class="card-body">
+                        <p class="font-weight-bold">Create New Complaint</p>
                         <form action="{{ route('complaints.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
@@ -46,9 +47,9 @@
                 </div>
             </div>
             <div class="col-md-4 mb-3">
-                <div class="card">
+                <div class="card border-0 shadow">
                     <div class="card-body">
-                        <p class="font-weight-bold">Your last report's</p>
+                        <p class="font-weight-bold">Your last complaint's</p>
                         <ul style="list-style: none;" class="pl-0">
                             @foreach ($complaints as $complaint)
                                 <img src="{{ route('get.photo', ['fileName' => $complaint->photo]) }}" class="img-fluid" alt="{{ $complaint->photo }}">

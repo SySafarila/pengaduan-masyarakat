@@ -80,6 +80,9 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <footer>
+            <p class="text-center text-muted">&copy; SySafarila</p>
+        </footer>
     </div>
 </body>
 </html>

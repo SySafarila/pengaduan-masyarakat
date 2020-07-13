@@ -103,6 +103,15 @@ class ComplaintsController extends Controller
         if (Auth::user()->level == 'public') {
             return abort(404);
         }
+        $request->validate([
+            'status' => 'required|in:complete'
+        ]);
+        $complaint = Complaint::find($id);
+        $complaint->update([
+            'status' => $request->status
+        ]);
+
+        return redirect()->route('complaints.index')->with('status-success', 'Complaint Updated !');
     }
 
     /**
