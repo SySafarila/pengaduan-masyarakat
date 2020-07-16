@@ -13,7 +13,6 @@
                         </div>
                         <p class="m-0">{{ $complaint->report }}</p>
                         <span class="badge badge-light shadow-sm text-capitalize">{{ $complaint->status }}</span>
-                        @if (Auth::user()->level == 'admin' or Auth::user()->level == 'officer')
                         <hr>
                         <p class="font-weight-bold">Responses</p>
                         @foreach ($complaint->responses as $response)
@@ -21,6 +20,7 @@
                             <span class="badge badge-light shadow-sm"><span class="text-muted">{{ $response->user->name }} : </span><span class="font-weight-light">{{ $response->response }}</span></span>
                         </div>
                         @endforeach
+                        @if (Auth::user()->level == 'admin' or Auth::user()->level == 'officer')
                         <hr>
                         <label for="response">Write Response</label>
                         <form action="{{ route('complaints.addResponse', $complaint->id) }}" method="post">
