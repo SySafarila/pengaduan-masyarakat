@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <div class="container">
     <div class="row mb-3">
         <div class="col">
@@ -15,7 +18,7 @@
             @endif
             <div class="d-inline-flex align-items-center mb-2">
                 <h1>Complaint's</h1>
-                <small class="text-muted ml-2 font-weight-lighter">Pending</small>
+                <small class="text-muted ml-2 font-weight-lighter">On Process</small>
             </div>
         </div>
     </div>
@@ -30,16 +33,15 @@
                             <small class="text-muted">{{ $complaint->created_at->diffForHumans() }}</small>
                             <small class="text-muted text-capitalize">Reporter : {{ $complaint->user->name }}</small>
                         </div>
-                        <form action="{{ route('complaints.update', $complaint->id) }}" method="post" class="mt-2">
+                        <form action="{{ route('complaints.setToComplete', $complaint->id) }}" method="post" class="mt-2">
                             @csrf
+                            @method('PATCH')
                             <select name="status" id="status" class="custom-select">
                                 <option value="">{{ ucwords($complaint->status) }}</option>
-                                <option value="on process">On Process</option>
+                                <option value="complete">Complete</option>
                             </select>
                             <button type="submit" class="btn btn-block btn-success mt-2">Update</button>
-                            <a href="{{ route('complaints.show', $complaint->id) }}" class="btn btn-block btn-light mt-2 shadow-sm">See Complaint</a>
                         </form>
-                        
                     </div>
                 </div>
             </div>
@@ -52,3 +54,4 @@
         {{ $complaints->links() }}
     </div>
 </div>
+@endsection

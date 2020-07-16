@@ -23,6 +23,20 @@ class ComplaintsController extends Controller
         return view('pages.complaints.index');
     }
 
+    public function process()
+    {
+        $complaints = Complaint::with('user')->where('status', 'on process')->paginate(10);
+        // return $complaints;
+        return view('pages.complaints.process', ['complaints' => $complaints]);
+    }
+
+    public function complete()
+    {
+        $complaints = Complaint::with('user')->where('status', 'complete')->paginate(10);
+        // return $complaints;
+        return view('pages.complaints.complete', ['complaints' => $complaints]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -77,7 +91,8 @@ class ComplaintsController extends Controller
      */
     public function show($id)
     {
-        //
+        $complaint = Complaint::find($id);
+        return view('pages.complaints.show', ['complaint' => $complaint]);
     }
 
     /**
@@ -104,7 +119,7 @@ class ComplaintsController extends Controller
             return abort(404);
         }
         $request->validate([
-            'status' => 'required|in:on process,complete'
+            'status' => 'required|in:on process'
         ]);
         $complaint = Complaint::find($id);
         $complaint->update([
@@ -112,6 +127,28 @@ class ComplaintsController extends Controller
         ]);
 
         return redirect()->route('complaints.index')->with('status-success', 'Complaint Updated !');
+    }
+
+    public function setToComplete(Request $request, $id)
+    {
+        if (Auth::user()->level == 'public') {
+            return abort(404);
+        }
+        $request->validate([
+            'status' => 'required|in:complete'
+        ]);
+        $complaint = Complaint::find($id);
+        $complaint->update([
+            'status' => $request->status
+        ]);
+
+        return redirect()->route('complaints.process')->with('status-success', 'Complaint Updated !');
+    }
+
+    public function addResponse(Request $request, $id)
+    {
+        $complaint = Complaint::find($id);
+        return $complaint;
     }
 
     /**
