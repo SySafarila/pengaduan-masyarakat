@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Complaint;
+use App\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -91,7 +92,7 @@ class ComplaintsController extends Controller
      */
     public function show($id)
     {
-        $complaint = Complaint::find($id);
+        $complaint = Complaint::with('user')->find($id);
         if (Auth::user()->level == $complaint->user->level or Auth::user()->level == 'officer' or Auth::user()->level == 'admin') {
             return view('pages.complaints.show', ['complaint' => $complaint]);
         } else {
@@ -151,8 +152,15 @@ class ComplaintsController extends Controller
 
     public function addResponse(Request $request, $id)
     {
+        $request->validate([
+            'response' => 'required'
+        ]);
         $complaint = Complaint::find($id);
-        return $complaint;
+        $response = $complaint->responses()->create([
+            'response' => $request->response,
+            'user_id' => $request->user()->id
+        ]);
+        return 'success';
     }
 
     /**

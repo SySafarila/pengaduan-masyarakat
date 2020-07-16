@@ -15,10 +15,20 @@
                         <span class="badge badge-light shadow-sm text-capitalize">{{ $complaint->status }}</span>
                         @if (Auth::user()->level == 'admin' or Auth::user()->level == 'officer')
                         <hr>
-                        <label for="response">Response</label>
-                        <form action="#" method="post">
+                        <p class="font-weight-bold">Responses</p>
+                        @foreach ($complaint->responses as $response)
+                        <div class="d-block">
+                            <span class="badge badge-light shadow-sm"><span class="text-muted">{{ $response->user->name }} : </span><span class="font-weight-light">{{ $response->response }}</span></span>
+                        </div>
+                        @endforeach
+                        <hr>
+                        <label for="response">Write Response</label>
+                        <form action="{{ route('complaints.addResponse', $complaint->id) }}" method="post">
                             @csrf
-                            <textarea name="response" id="response" rows="4" class="form-control" placeholder="Write your response here"></textarea>
+                            <textarea name="response" id="response" rows="4" class="form-control" placeholder="Write your response here" required></textarea>
+                            @error('response')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                             <button type="submit" class="btn btn-success mt-2 btn-block">Submit</button>
                         </form>
                         @endif
