@@ -8,7 +8,9 @@
                     <div class="card-body">
                         <h1>Pages</h1>
                         <ul>
+                            <li><a href="{{ route('users.index') }}">Users</a></li>
                             <li><a href="{{ route('complaints.index') }}">Complaint's</a></li>
+                            
                         </ul>
                     </div>
                 </div>
