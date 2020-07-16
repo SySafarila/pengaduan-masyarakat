@@ -4,9 +4,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card text-center shadow">
+              <h2 class="text-white card-header bg-success border-success mb-3">Users list</h2>
                 <div class="card-body">
-                    <h1>User list</h1>
+                    
 
                     <table class="table table-bordered">
                         <thead class="thead-dark">
