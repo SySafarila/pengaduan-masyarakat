@@ -15,6 +15,12 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    <hr>
+                    {{ Auth::user()->name }}
+                    {{ Auth::user()->username }}
+                    {{ Auth::user()->email }}
+                    {{ Auth::user()->level }}
+                    <img src="{{ route('get.photo', ['fileName' => 'eN6YTHoYIC.jpeg']) }}">
                 </div>
             </div>
         </div>

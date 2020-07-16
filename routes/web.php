@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +20,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+Route::resource('/complaints', 'ComplaintsController');
+
+Route::prefix('/files')->group(function () {
+    Route::get('/photo/{fileName}', 'GetFiles@photo')->name('get.photo');
+});
