@@ -83,7 +83,7 @@
             @yield('content')
         </main>
         <footer>
-            <p class="text-center text-muted">&copy; SySafarila</p>
+            <p class="text-center text-muted">&copy; SySafarila | Deska | Dendra</p>
         </footer>
     </div>
 </body>
