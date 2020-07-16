@@ -9,4 +9,4 @@ php artisan key:generate
 npm install && npm run dev
 ```
 
-updated by IndomieMan
+updated by IndomieMan.
