@@ -73,8 +73,8 @@
                             <div class="col-md-6">
                                 <select name="level" id="level" class="custom-select">
                                     <option value="">- Select Level -</option>
-                                    <option value="admin" disabled>Admin</option>
-                                    <option value="pfficer" disabled>Officer</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="pfficer">Officer</option>
                                     <option value="public" selected>Public</option>
                                 </select>
 
