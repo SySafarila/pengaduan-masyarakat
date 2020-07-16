@@ -27,3 +27,9 @@ Route::resource('/complaints', 'ComplaintsController');
 Route::prefix('/files')->group(function () {
     Route::get('/photo/{fileName}', 'GetFiles@photo')->name('get.photo');
 });
+
+// Account
+
+// Users
+
+// Gallery
