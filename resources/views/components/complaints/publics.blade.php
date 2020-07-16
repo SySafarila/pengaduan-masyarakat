@@ -49,22 +49,27 @@
             <div class="col-md-4 mb-3">
                 <div class="card border-0 shadow">
                     <div class="card-body">
-                        <p class="font-weight-bold">Your last complaint's</p>
-                        <ul style="list-style: none;" class="pl-0">
+                        <div class="d-flex justify-content-between">
+                            <p class="font-weight-bold">Your last complaint's</p>
+                            <p class="text-muted">Show all</p>
+                        </div>
+                        <ul style="list-style: none;" class="pl-0 mb-0">
                             @foreach ($complaints as $complaint)
                                 <img src="{{ route('get.photo', ['fileName' => $complaint->photo]) }}" class="img-fluid" alt="{{ $complaint->photo }}">
-                                <li>{{ $complaint->report }}</li>
-                                <div class="d-flex justify-content-between">
+                                <li class="mt-2">{{ $complaint->report }}</li>
+                                <div class="d-flex justify-content-between mb-2">
                                     <div>
                                         <small class="text-muted">{{ $complaint->created_at->diffForHumans() }}</small>
                                     </div>
                                     <div>
-                                        <span class="badge @if($complaint->status == 'on process') badge-dark @else badge-success @endif badge-pill text-capitalize">{{ $complaint->status }}</span>
+                                        <span class="badge @if($complaint->status == 'complete') badge-success @else badge-dark @endif badge-pill text-capitalize">{{ $complaint->status }}</span>
                                     </div>
                                 </div>
-                                <hr>
                             @endforeach
                         </ul>
+                        @if ($complaints->count() == 0)
+                            <p class="text-muted text-center m-0">Empty</p>
+                        @endif
                     </div>
                 </div>
             </div>
