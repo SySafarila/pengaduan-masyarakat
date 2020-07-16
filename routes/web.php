@@ -27,6 +27,7 @@ Route::get('/complaints', 'ComplaintsController@index')->name('complaints.index'
 Route::get('/complaints/process', 'ComplaintsController@process')->middleware('isOfficerOrAdmin')->name('complaints.process');
 Route::get('/complaints/complete', 'ComplaintsController@complete')->middleware('isOfficerOrAdmin')->name('complaints.complete');
 Route::get('/complaints/{id}', 'ComplaintsController@show')->name('complaints.show');
+Route::get('/my-complaints', 'ComplaintsController@myComplaints')->name('myComplaints');
 
 Route::post('/complaints', 'ComplaintsController@store')->name('complaints.store');
 Route::post('/complaints/{id}', 'ComplaintsController@update')->middleware('isOfficerOrAdmin')->name('complaints.update');
