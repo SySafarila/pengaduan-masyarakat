@@ -55,16 +55,18 @@
                         </div>
                         <ul style="list-style: none;" class="pl-0 mb-0">
                             @foreach ($complaints as $complaint)
-                                <img src="{{ route('get.photo', ['fileName' => $complaint->photo]) }}" class="img-fluid" alt="{{ $complaint->photo }}">
-                                <li class="mt-2">{{ $complaint->report }}</li>
-                                <div class="d-flex justify-content-between mb-2">
-                                    <div>
-                                        <small class="text-muted">{{ $complaint->created_at->diffForHumans() }}</small>
+                                <a href="{{ route('complaints.show', $complaint->id) }}" class="text-decoration-none">
+                                    <img src="{{ route('get.photo', ['fileName' => $complaint->photo]) }}" class="img-fluid" alt="{{ $complaint->photo }}">
+                                    <li class="mt-2 text-dark">{{ $complaint->report }}</li>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <div>
+                                            <small class="text-muted">{{ $complaint->created_at->diffForHumans() }}</small>
+                                        </div>
+                                        <div>
+                                            <span class="badge @if($complaint->status == 'complete') badge-success @else badge-dark @endif badge-pill text-capitalize">{{ $complaint->status }}</span>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <span class="badge @if($complaint->status == 'complete') badge-success @else badge-dark @endif badge-pill text-capitalize">{{ $complaint->status }}</span>
-                                    </div>
-                                </div>
+                                </a>
                             @endforeach
                         </ul>
                         @if ($complaints->count() == 0)
