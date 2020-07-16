@@ -41,5 +41,6 @@ Route::prefix('/files')->group(function () {
 // Account
 
 // Users
+Route::get('/users', 'UsersController@index')->name('users.index');
 
 // Gallery

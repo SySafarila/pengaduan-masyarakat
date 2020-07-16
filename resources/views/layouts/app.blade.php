@@ -36,9 +36,11 @@
                         <li class="nav-item">
                             <a class="nav-link {{ Request::is(['dashboard']) ? 'text-orange' : '' }}" href="{{ route('dashboard') }}">Dashboard</a>
                         </li>
+            
                         <li class="nav-item">
                             <a class="nav-link {{ Request::is(['complaints', 'complaints/*']) ? 'text-orange' : '' }}" href="{{ route('complaints.index') }}">Complaints</a>
                         </li>
+                        
                     </ul>
 
                     <!-- Right Side Of Navbar -->
