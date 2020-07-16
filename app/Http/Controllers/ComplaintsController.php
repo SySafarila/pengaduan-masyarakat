@@ -58,7 +58,7 @@ class ComplaintsController extends Controller
                 'report' => $request->report,
                 'photo' => $photo,
                 'user_id' => $request->user()->id,
-                'status' => 'on process'
+                'status' => 'pending'
             ]);
 
             $request->file('photo')->storeAs('photos', $photo);
