@@ -20,11 +20,12 @@
                         </thead>
                         <tbody>
                           @foreach ($users as $item)
-                          <td>{{ $loop->iteration }}</td>
-                          <td>{{ $item->nik }}</td>
-                          <td>{{ $item->name }}</td>
-                          <td>{{ $item->level }}</td>
-                              
+                          <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->nik }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->level }}</td>
+                          </tr>
                           @endforeach
                         </tbody>
                       </table>
