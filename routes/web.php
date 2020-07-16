@@ -31,6 +31,7 @@ Route::get('/complaints/{id}', 'ComplaintsController@show')->name('complaints.sh
 Route::post('/complaints', 'ComplaintsController@store')->name('complaints.store');
 Route::post('/complaints/{id}', 'ComplaintsController@update')->middleware('isOfficerOrAdmin')->name('complaints.update');
 Route::patch('/complaints/{id}', 'ComplaintsController@setToComplete')->middleware('isOfficerOrAdmin')->name('complaints.setToComplete');
+Route::post('/complaints/response/{id}', 'ComplaintsController@addResponse')->middleware('isOfficerOrAdmin')->name('complaints.addResponse');
 
 Route::prefix('/files')->group(function () {
     Route::get('/photo/{fileName}', 'GetFiles@photo')->name('get.photo');
