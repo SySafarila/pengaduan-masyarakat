@@ -18,7 +18,7 @@
             @endif
             <div class="d-inline-flex align-items-center mb-2">
                 <h1>Complaint's</h1>
-                <small class="text-muted ml-2 font-weight-lighter">On Process</small>
+                <small class="text-muted ml-2 font-weight-lighter">Complete</small>
             </div>
         </div>
     </div>
@@ -33,6 +33,7 @@
                             <small class="text-muted">{{ $complaint->created_at->diffForHumans() }}</small>
                             <small class="text-muted text-capitalize">Reporter : {{ $complaint->user->name }}</small>
                         </div>
+                        <a href="{{ route('complaints.show', $complaint->id) }}" class="btn btn-block btn-light mt-2 shadow-sm">See Complaint</a>
                     </div>
                 </div>
             </div>

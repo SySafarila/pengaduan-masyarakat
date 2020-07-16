@@ -41,6 +41,7 @@
                                 <option value="complete">Complete</option>
                             </select>
                             <button type="submit" class="btn btn-block btn-success mt-2">Update</button>
+                            <a href="{{ route('complaints.show', $complaint->id) }}" class="btn btn-block btn-light mt-2 shadow-sm">See Complaint</a>
                         </form>
                     </div>
                 </div>

@@ -45,11 +45,16 @@
                         <form action="{{ route('complaints.update', $complaint->id) }}" method="post" class="mt-2">
                             @csrf
                             <h1>Status</h1>
-                            <select name="status" id="status" class="custom-select">
+                            <select name="status" id="status" class="custom-select" @if($complaint->status == 'complete') disabled @endif>
                                 <option value="">{{ ucwords($complaint->status) }}</option>
-                                <option value="on process">On Process</option>
+                                @if ($complaint->status == 'pending')
+                                    <option value="on process">On Process</option>
+                                @endif
+                                @if ($complaint->status == 'on process')
+                                    <option value="complete">Complete</option>
+                                @endif
                             </select>
-                            <button type="submit" class="btn btn-block btn-success mt-2">Update</button>
+                            <button type="submit" class="btn btn-block btn-success mt-2" @if($complaint->status == 'complete') disabled @endif>Update</button>
                         </form>
                     </div>
                 </div>
