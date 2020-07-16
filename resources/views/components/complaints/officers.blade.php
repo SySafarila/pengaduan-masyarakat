@@ -28,6 +28,7 @@
                             @method('PATCH')
                             <select name="status" id="status" class="custom-select">
                                 <option value="">{{ ucwords($complaint->status) }}</option>
+                                <option value="on process">On Process</option>
                                 <option value="complete">Complete</option>
                             </select>
                             <button type="submit" class="btn btn-block btn-success mt-2">Update</button>

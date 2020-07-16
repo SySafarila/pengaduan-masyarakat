@@ -49,7 +49,10 @@
             <div class="col-md-4 mb-3">
                 <div class="card border-0 shadow">
                     <div class="card-body">
-                        <p class="font-weight-bold">Your last complaint's</p>
+                        <div class="d-flex justify-content-between">
+                            <p class="font-weight-bold">Your last complaint's</p>
+                            <p class="text-muted">Show all</p>
+                        </div>
                         <ul style="list-style: none;" class="pl-0 mb-0">
                             @foreach ($complaints as $complaint)
                                 <img src="{{ route('get.photo', ['fileName' => $complaint->photo]) }}" class="img-fluid" alt="{{ $complaint->photo }}">

@@ -104,7 +104,7 @@ class ComplaintsController extends Controller
             return abort(404);
         }
         $request->validate([
-            'status' => 'required|in:complete'
+            'status' => 'required|in:on process,complete'
         ]);
         $complaint = Complaint::find($id);
         $complaint->update([

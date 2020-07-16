@@ -24,7 +24,7 @@ class officers extends Component
      */
     public function render()
     {
-        $complaints = Complaint::with('user')->where('status', 'on process')->paginate(10);
+        $complaints = Complaint::with('user')->where('status', 'pending')->paginate(10);
         return view('components.complaints.officers', ['complaints' => $complaints]);
     }
 }
