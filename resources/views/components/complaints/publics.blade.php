@@ -51,7 +51,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <p class="font-weight-bold">Your last complaint's</p>
-                            <p class="text-muted">Show all</p>
+                            <a href="{{ route('myComplaints') }}" class="text-muted text-decoration-none">Show all</a>
                         </div>
                         <ul style="list-style: none;" class="pl-0 mb-0">
                             @foreach ($complaints as $complaint)

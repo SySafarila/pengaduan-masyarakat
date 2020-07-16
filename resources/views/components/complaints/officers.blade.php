@@ -25,7 +25,7 @@
                 <div class="card h-100 border-0 shadow">
                     <img src="{{ route('get.photo', ['fileName' => $complaint->photo]) }}" class="card-img-top" alt="{{ $complaint->photo }}">
                     <div class="card-body">
-                        <p>{{ $complaint->report }}</p>
+                        <p style="white-space: pre;">{{ $complaint->report }}</p>
                         <div class="d-flex justify-content-between">
                             <small class="text-muted">{{ $complaint->created_at->diffForHumans() }}</small>
                             <small class="text-muted text-capitalize">Reporter : {{ $complaint->user->name }}</small>
@@ -39,7 +39,6 @@
                             <button type="submit" class="btn btn-block btn-success mt-2">Update</button>
                             <a href="{{ route('complaints.show', $complaint->id) }}" class="btn btn-block btn-light mt-2 shadow-sm">See Complaint</a>
                         </form>
-                        
                     </div>
                 </div>
             </div>

@@ -38,6 +38,13 @@ class ComplaintsController extends Controller
         return view('pages.complaints.complete', ['complaints' => $complaints]);
     }
 
+    public function myComplaints()
+    {
+        $complaints = Complaint::where('user_id', Auth::user()->id)->paginate(10);
+        // return $complaints;
+        return view('pages.complaints.myComplaints', ['complaints' => $complaints]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
