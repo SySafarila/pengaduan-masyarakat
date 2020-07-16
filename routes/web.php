@@ -22,8 +22,22 @@ Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-Route::resource('/complaints', 'ComplaintsController');
+// Complaints
+Route::get('/complaints', 'ComplaintsController@index')->name('complaints.index');
+Route::get('/complaints/process', 'ComplaintsController@process')->middleware('isOfficerOrAdmin')->name('complaints.process');
+Route::get('/complaints/complete', 'ComplaintsController@complete')->middleware('isOfficerOrAdmin')->name('complaints.complete');
+Route::get('/complaints/{id}', 'ComplaintsController@show')->name('complaints.show');
+
+Route::post('/complaints', 'ComplaintsController@store')->name('complaints.store');
+Route::post('/complaints/{id}', 'ComplaintsController@update')->middleware('isOfficerOrAdmin')->name('complaints.update');
+Route::patch('/complaints/{id}', 'ComplaintsController@setToComplete')->middleware('isOfficerOrAdmin')->name('complaints.setToComplete');
 
 Route::prefix('/files')->group(function () {
     Route::get('/photo/{fileName}', 'GetFiles@photo')->name('get.photo');
 });
+
+// Account
+
+// Users
+
+// Gallery
