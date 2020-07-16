@@ -36,14 +36,9 @@ Route::prefix('/files')->group(function () {
     Route::get('/photo/{fileName}', 'GetFiles@photo')->name('get.photo');
 });
 
-<<<<<<< HEAD
-
-
-
-=======
 // Account
 
 // Users
-Route::get('/users', 'UsersController@index');
+Route::get('/users', 'UsersController@index')->name('users.index');
+
 // Gallery
->>>>>>> 3ac101829b7a1fe678a45562f83b4bf22b050408
