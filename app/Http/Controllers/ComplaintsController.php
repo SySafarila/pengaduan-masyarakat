@@ -92,7 +92,11 @@ class ComplaintsController extends Controller
     public function show($id)
     {
         $complaint = Complaint::find($id);
-        return view('pages.complaints.show', ['complaint' => $complaint]);
+        if (Auth::user()->level == $complaint->user->level or Auth::user()->level == 'officer' or Auth::user()->level == 'admin') {
+            return view('pages.complaints.show', ['complaint' => $complaint]);
+        } else {
+            return abort(404);
+        }
     }
 
     /**
